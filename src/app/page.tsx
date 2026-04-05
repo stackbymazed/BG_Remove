@@ -3,21 +3,13 @@ import UploadSection from '@/components/UploadSection';
 
 export default function Home() {
   return (
-    <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <main className="min-h-screen flex flex-col items-center">
       <Navbar />
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', width: '100%' }}>
+      <div className="flex-1 flex flex-col w-full">
         <UploadSection />
       </div>
 
-      <footer style={{
-        marginTop: 'auto',
-        padding: '40px 0',
-        width: '100%',
-        textAlign: 'center',
-        borderTop: '1px solid var(--glass-border)',
-        opacity: 0.5,
-        fontSize: '14px'
-      }}>
+      <footer className="mt-auto py-10 w-full text-center border-t border-white/10 opacity-50 text-sm">
         <p>&copy; 2026 RemovAI. All rights reserved.</p>
       </footer>
     </main>

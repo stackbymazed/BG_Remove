@@ -68,27 +68,27 @@ export default function UploadSection() {
     };
 
     return (
-        <section style={{ padding: '100px 5% 50px', width: '100%', maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-                <h1 style={{ fontSize: 'env(48px, 3rem)', fontWeight: '800', marginBottom: '20px', letterSpacing: '-1.5px' }}>
+        <section className="px-[5%] py-[100px] pb-12 w-full max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+                <h1 className="text-5xl md:text-6xl font-extrabold mb-5 tracking-tighter leading-tight">
                     Remove backgrounds <br /> <span className="gradient-text">instantly with AI</span>
                 </h1>
-                <p style={{ opacity: 0.6, fontSize: '18px', maxWidth: '600px', margin: '0 auto' }}>
+                <p className="opacity-60 text-lg md:text-xl max-w-2xl mx-auto">
                     Upload your image and let our AI handle the rest. High-quality precision, zero effort.
                 </p>
             </div>
 
-            <div className="glass" style={{ minHeight: '400px', padding: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderStyle: 'dashed', borderWidth: '2px' }}>
+            <div className="glass min-h-[400px] p-10 flex flex-col items-center justify-center border-dashed border-2 border-white/10">
                 {!preview ? (
                     <div
                         onClick={() => fileInputRef.current?.click()}
-                        style={{ textAlign: 'center', cursor: 'pointer' }}
+                        className="text-center cursor-pointer group"
                     >
-                        <div style={{ background: 'var(--glass-bg)', padding: '24px', borderRadius: '50%', marginBottom: '20px', display: 'inline-block' }}>
-                            <UploadCloud size={48} color="white" />
+                        <div className="bg-white/5 p-6 rounded-full mb-5 inline-block group-hover:scale-110 transition-transform">
+                            <UploadCloud size={48} className="text-white" />
                         </div>
-                        <h3 style={{ marginBottom: '10px' }}>Upload Image</h3>
-                        <p style={{ opacity: 0.5, fontSize: '14px' }}>PNG, JPG or JPEG up to 10MB</p>
+                        <h3 className="mb-2.5 text-xl font-semibold">Upload Image</h3>
+                        <p className="opacity-50 text-sm">PNG, JPG or JPEG up to 10MB</p>
                         <input
                             type="file"
                             hidden
@@ -98,15 +98,15 @@ export default function UploadSection() {
                         />
                     </div>
                 ) : (
-                    <div style={{ width: '100%', maxWidth: '900px', display: 'grid', gridTemplateColumns: result ? '1fr 1fr' : '1fr', gap: '30px' }}>
-                        <div style={{ position: 'relative' }}>
-                            <p style={{ marginBottom: '10px', fontSize: '14px', opacity: 0.7 }}>Original</p>
-                            <div style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', height: '400px' }}>
-                                <Image src={preview} alt="Original" fill style={{ objectFit: 'contain' }} />
+                    <div className={`w-full max-w-4xl grid gap-8 ${result ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'}`}>
+                        <div className="relative">
+                            <p className="mb-2.5 text-sm opacity-70 font-medium">Original</p>
+                            <div className="relative rounded-2xl overflow-hidden h-[400px] bg-black/20">
+                                <Image src={preview} alt="Original" fill className="object-contain" />
                                 {!loading && !result && (
                                     <button
                                         onClick={removeImage}
-                                        style={{ position: 'absolute', top: '10px', right: '10px', background: 'rgba(0,0,0,0.5)', padding: '6px', borderRadius: '50%' }}
+                                        className="absolute top-2.5 right-2.5 bg-black/50 p-1.5 rounded-full hover:bg-black/80 transition-colors"
                                     >
                                         <X size={16} />
                                     </button>
@@ -116,9 +116,9 @@ export default function UploadSection() {
 
                         {result && (
                             <div>
-                                <p style={{ marginBottom: '10px', fontSize: '14px', opacity: 0.7 }}>Result (Transparent PNG)</p>
-                                <div style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', height: '400px', background: 'url(/checkerboard.png)', backgroundColor: '#333' }}>
-                                    <Image src={result} alt="Result" fill style={{ objectFit: 'contain' }} />
+                                <p className="mb-2.5 text-sm opacity-70 font-medium">Result (Transparent PNG)</p>
+                                <div className="relative rounded-2xl overflow-hidden h-[400px] bg-[url('/checkerboard.png')] bg-zinc-800">
+                                    <Image src={result} alt="Result" fill className="object-contain" />
                                 </div>
                             </div>
                         )}
@@ -126,31 +126,28 @@ export default function UploadSection() {
                 )}
 
                 {preview && (
-                    <div style={{ marginTop: '40px', display: 'flex', gap: '20px' }}>
+                    <div className="mt-10 flex flex-wrap justify-center gap-5">
                         {!result ? (
                             <button
-                                className="primary-button"
+                                className="primary-button flex gap-2.5 items-center disabled:opacity-50"
                                 onClick={handleRemoveBackground}
                                 disabled={loading}
-                                style={{ display: 'flex', gap: '10px', alignItems: 'center' }}
                             >
                                 {loading ? <Loader2 className="animate-spin" /> : <ImageIcon size={20} />}
                                 {loading ? 'Processing...' : 'Remove Background'}
                             </button>
                         ) : (
-                            <div style={{ display: 'flex', gap: '15px' }}>
+                            <div className="flex flex-wrap justify-center gap-4">
                                 <button
-                                    className="primary-button"
+                                    className="primary-button flex gap-2.5 items-center"
                                     onClick={downloadImage}
-                                    style={{ display: 'flex', gap: '10px', alignItems: 'center' }}
                                 >
                                     <Download size={20} />
                                     Download PNG
                                 </button>
                                 <button
-                                    className="glass"
+                                    className="glass px-6 py-3 font-semibold hover:bg-white/5 transition-all"
                                     onClick={removeImage}
-                                    style={{ padding: '12px 24px', fontWeight: '600' }}
                                 >
                                     Start Over
                                 </button>
@@ -159,18 +156,8 @@ export default function UploadSection() {
                     </div>
                 )}
 
-                {error && <p style={{ color: '#ef4444', marginTop: '20px', fontSize: '14px' }}>{error}</p>}
+                {error && <p className="text-red-500 mt-5 text-sm text-center">{error}</p>}
             </div>
-
-            <style jsx>{`
-        .animate-spin {
-          animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
         </section>
     );
 }

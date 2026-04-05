@@ -3,33 +3,21 @@ import { Image as ImageIcon } from 'lucide-react';
 
 export default function Navbar() {
     return (
-        <nav style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            padding: '24px 5%',
-            position: 'fixed',
-            top: 0,
-            width: '100%',
-            zIndex: 100,
-            background: 'rgba(10, 10, 12, 0.5)',
-            backdropFilter: 'blur(10px)',
-            borderBottom: '1px solid var(--glass-border)'
-        }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <ImageIcon size={28} color="var(--accent-1)" />
-                <span style={{ fontSize: '20px', fontWeight: 'bold', letterSpacing: '-0.5px' }}>
-                    Remov<span style={{ color: 'var(--accent-1)' }}>AI</span>
+        <nav className="flex justify-between items-center px-[5%] py-6 fixed top-0 w-full z-50 bg-[#0a0a0c]/50 backdrop-blur-md border-b border-white/10">
+            <div className="flex items-center gap-2.5">
+                <ImageIcon size={28} className="text-purple-600" />
+                <span className="text-xl font-bold tracking-tight">
+                    Remov<span className="text-purple-600">AI</span>
                 </span>
             </div>
 
-            <div style={{ display: 'flex', gap: '30px', fontWeight: '500', fontSize: '14px' }}>
-                <Link href="/">Home</Link>
-                <Link href="/pricing" style={{ opacity: 0.7 }}>Pricing</Link>
-                <Link href="/about" style={{ opacity: 0.7 }}>About</Link>
+            <div className="flex gap-7.5 font-medium text-sm">
+                <Link href="/" className="hover:text-purple-400 transition-colors">Home</Link>
+                <Link href="/pricing" className="opacity-70 hover:opacity-100 transition-opacity">Pricing</Link>
+                <Link href="/about" className="opacity-70 hover:opacity-100 transition-opacity">About</Link>
             </div>
 
-            <button className="glass" style={{ padding: '8px 20px', fontSize: '14px', fontWeight: '600' }}>
+            <button className="glass px-5 py-2 text-sm font-semibold hover:bg-white/5 transition-all">
                 Login
             </button>
         </nav>
